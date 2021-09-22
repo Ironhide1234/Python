@@ -1,8 +1,13 @@
-import sys
+from sys import argv
 
-def answ(oper):
-    return eval(oper)
+userinp = argv[1:]
 
-oper = "".join(sys.argv[1:])
-   
-print(answ(oper))
+def answ(userinp):
+    if len(userinp) == 3:
+        try:
+            return eval(''.join(userinp))        
+        except:
+           return None
+    else:
+        return None
+print(answ(userinp))
