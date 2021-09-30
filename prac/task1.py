@@ -2,7 +2,7 @@ class Rectangle:
     def __init__(self,width = 1, height = 1):
         self.setter(width,height)
     def setter(self,width,height):
-        if h <= 0 and w <= 0:
+        if  h <= 0 and w <= 0 or h >= 20 and w >= 20:
             print("Incorrect number")
         else:
             self.height  = height      
