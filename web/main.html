@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <script src = "eel.js"></script>
+    <link rel="icon" type = "image.png" href = "/favicon.png">
+
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <input id="location" type="text" placeholder = "Введите название стрыны и города..." required = "" value = "Киев,Украина">
+    <button id="show">Узнать погоду</button>
+ <div class="info"></div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type ="text/javascript">
+        async function display_weather(){
+            let place = document.getElementById('location').value;
+            let res = await eel.get_weather(place)();
+            document.getElement.ById('info').innerHTML = res;
+        }
+        jQuery('#show').on('click', function() {
+            display_weather();
+        });
+    </script>
+</body>
+</html>
