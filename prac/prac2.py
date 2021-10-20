@@ -72,28 +72,28 @@ class Rational:
 		return Rational(res[0], res[1])	
 
 
-def main():
-	a = Rational()
-	assert a.print_div() == "1/1"		
-	assert a.print_res_div() == "1/1 = 1.0"
-	print(a, end="\n\n")
 
-	b = Rational(121, 11)
-	assert b.print_div() == "121/11"		
-	assert b.print_res_div() == "121/11 = 11.0"
-	print(b, end="\n\n")
-	a = Rational(3, 9)
-	b = Rational(3, 9)
-	c = a / b
-	assert c.print_div() == '1/1'
+a = Rational()
+assert a.print_div() == "1/1"		
+assert a.print_res_div() == "1/1 = 1.0"
+print(a, end="\n\n")
 
-	c = a * b
-	assert c.print_div() == '1/9'
+b = Rational(121, 11)
+assert b.print_div() == "121/11"		
+assert b.print_res_div() == "121/11 = 11.0"
+print(b, end="\n\n")
+a = Rational(3, 9)
+b = Rational(3, 9)
+c = a / b
+assert c.print_div() == '1/1'
 
-	c = a + b
-	assert c.print_div() == '2/3'
+c = a * b
+assert c.print_div() == '1/9'
+
+c = a + b
+assert c.print_div() == '2/3'
 	
-	c = a - b
-	assert c.print_div() == '0'
+c = a - b
+assert c.print_div() == '0'
 
-main()
+
