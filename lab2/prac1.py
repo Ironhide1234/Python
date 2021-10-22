@@ -1,7 +1,14 @@
 class Rectangle:
     def __init__(self,width = 1, height = 1):
-        self.height  = height      
-        self.width = width
+        self.__height  = height      
+        self.__width = width
+    @staticmethod
+    def check(value):
+        if not isinstance(value,float):
+            raise TypeError("Wrong type")
+        if not (value <= 20 and value > 0):
+            raise ValueError("Wrong value")
+        return True    
     @property
     def width(self):
         return self.__width
@@ -10,29 +17,21 @@ class Rectangle:
         return self.__height    
     @height.setter
     def height(self,height):
-        if height <= 20 and height > 0:
-            self.__height = height 
-        else:
-            raise ValueError
+        if Rectangle.check(height):
+            self.__height = height           
     @width.setter
     def width(self,width):
-        if width <= 20 and width > 0:
-            self.__width = width 
-        else:
-            raise ValueError
-    def user(self):
-        return f'Your width: {self.__width}\nYour height: {self.__height}'       
-    def perimeter(self):
-        return f'Perimeter: {(self.__width + self.height) * 2}'
-    def area(self):
-        return f'Area: {(self.__width * self.__height)}'    
-    
-try:    
-    h = float(input())
-    w = float(input())
-    r = Rectangle(w,h)
-    print(r.user())
-    print(r.area())
-    print(r.perimeter())      
-except ValueError:
-    print("Wrong value")     
+        if  Rectangle.check(width):
+            self.__width = width           
+    def calcPer(self):
+        return (self.__width + self.__height) * 2
+    def calcAr(self):
+        return self.__width * self.__height    
+       
+h = float(input())
+w = float(input())
+r = Rectangle(w,h)
+print(f'Your height:{r.height}  Your width:{r.width}')
+print(f'Your area: {r.calcAr()}')
+print(f'Your perimeter: {r.calcPer()}')      
+ 

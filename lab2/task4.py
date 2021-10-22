@@ -1,21 +1,20 @@
 class Btree:
-    price = []
+    price = ['']
     def __init__(self,data,quant):
         self.data = data
         self.quant = quant
         self.left = None
         self.right = None
     def create_price(self,*prices):
-        Btree.price.append('')
         for price in prices:
-            if isinstance(price,(int,float)) and price > 0:
-                Btree.price.append(price)
-            else:
+            if not (isinstance(price,(int,float)) and price > 0):
                 raise ValueError("Value error")
+            Btree.price.append(price) 
+
     def insert(self,data,quant):
         if self.data:
             if data < self.data:
-                if self.left is None:
+                if  self.left is None:
                     self.left = Btree(data,quant)   
                 else:
                     self.left.insert(data,quant)     
@@ -33,20 +32,20 @@ class Btree:
         if root:
             res = self.treeTraversal(root.left)
             res.append(root.quant*Btree.price[root.data])
-            res = res + self.treeTraversal(root.right)
+            res += self.treeTraversal(root.right)
         return res
 
 code, qty = map(int, input().split())
-if 0  < code <=10 and qty > 0:
-    root = Btree(code,qty)
-else:
+
+if not 0  < code <= 10 and qty > 0:
     raise ValueError
+root = Btree(code,qty)
+  
 root.create_price(1,2,3,4,5,6,7,8,9,10)
 for i in range(4):
     code, qty = map(int, input().split())
-    if 0<code<=10 and qty>0:
-        root.insert(code,qty)
-    else:
+    if not (0 < code <= 10 and qty>0):
         raise ValueError
+    root.insert(code,qty)
 
 print(root.treeTraversal(root))            
