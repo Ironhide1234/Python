@@ -25,7 +25,7 @@ class Rational:
         
     def __add__(self,other):
         if not isinstance(other,Rational):
-            raise TypeError
+            raise TypeError("Wrong type")
         denominator=int(self.__denominator*other.__denominator/gcd(self.__denominator,other.__denominator))
         numerator=int(denominator/self.__denominator*self.__numerator+denominator/other.__denominator*other.__numerator)
         k = Rational.reducefraction(int(numerator), int(denominator))      
@@ -33,7 +33,7 @@ class Rational:
     
     def __sub__(self,other):
         if not isinstance(other,Rational):
-            raise TypeError
+            raise TypeError("Wrong type")
         denominator=int(self.__denominator*other.__denominator/gcd(self.__denominator,other.__denominator))
         numerator=int(denominator/self.__denominator*self.__numerator-denominator/other.__denominator*other.__numerator) 
         k=Rational.reducefraction(int(numerator),int(denominator))       
@@ -41,7 +41,7 @@ class Rational:
         
     def __mul__(self,other):
         if not isinstance(other,Rational):
-            raise TypeError
+            raise TypeError("Wrong type")
         denominator=self.__denominator*other.__denominator
         numerator=self.__numerator*other.__numerator
         k=Rational.reducefraction(int(numerator),int(denominator))     
@@ -49,7 +49,7 @@ class Rational:
     
     def __truediv__(self,other):
         if not isinstance(other,Rational):
-            raise TypeError
+            raise TypeError("Wrong type")
         denominator=self.__denominator*other.__numerator
         numerator=self.__numerator*other.__denominator
         k=Rational.reducefraction(int(numerator),int(denominator))
