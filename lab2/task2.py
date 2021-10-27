@@ -1,8 +1,6 @@
 import re
 import string
 
-dividers = ".!?"
-
 class Text:
     def __init__(self,filename):
         if not isinstance(filename,str):
@@ -15,25 +13,26 @@ class Text:
         self.filename = filename
             
     def count_symbols(self):
+        count = 0
         f = open(self.filename)  
-        symb = str(len(f.read()) - len(string.whitespace))
+        symb = len(f.read())
         f.close()
         return symb
 
     def count_words(self):  
         f = open(self.filename)    
-        words  = str(len(f.read().split()))
+        words = len(re.findall(r'[a-zA-Z-\']+', f.read()))
         f.close()
         return words
 
     def count_sentences(self):   
         f = open(self.filename)    
-        sent = str(len(re.split(r'[!/?/.]',f.read())))
+        sent = len(re.split(r'[!/?/.]+',f.read()))
         f.close()
         return sent
 
 A = Text("task2.txt")
-sym = (A.count_symbols())
-wrd = str(A.count_words())
-sent = str(A.count_sentences())
-print("Symbols: " + sym,"Words: " + wrd,"Sentences: " + sent)
+sym = A.count_symbols()
+wrd = A.count_words()
+sent = A.count_sentences()
+print(f'Symbols: {sym} Words: {wrd} Sentences: {sent}')

@@ -5,6 +5,7 @@ class Btree:
         self.quant = quant
         self.left = None
         self.right = None
+
     def create_price(self,*prices):
         for price in prices:
             if not (isinstance(price,(int,float)) and price > 0):
@@ -45,7 +46,7 @@ root.create_price(1,2,3,4,5,6,7,8,9,10)
 for i in range(4):
     code, qty = map(int, input().split())
     if not (0 < code <= 10 and qty>0):
-        raise ValueError
+        raise ValueError("Wrong value")
     root.insert(code,qty)
 
 print(root.treeTraversal(root))            

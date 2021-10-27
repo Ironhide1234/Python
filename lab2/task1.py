@@ -1,31 +1,126 @@
+import re
+import phonenumbers
+
 class Stores:
     def __init__(self,name,price_serv,descr,prodim):
         if not (isinstance(price_serv,int) and isinstance(descr,str) and isinstance(prodim,str) and isinstance(name,str)): 
             raise TypeError("Wrong type")
         if not (name.isalpha() and price_serv > 0 and descr and prodim):
              raise ValueError("Wrong value") 
-        self.__name = name
+        self.name = name
         self.price_serv = price_serv
-        self.__descr = descr
-        self.__prodim = prodim 
+        self.descr = descr
+        self.prodim = prodim 
 
-    def __str__(self):
-        return f'Name:{self.__name}, Price: {self.price_serv}, Description: {self.__descr},Dimensions:{self.__prodim}'
+    @property
+    def name(self):
+        return self.__name
+
+    @property 
+    def price_serv(self):    
+        return self.__price_serv
+
+    @property
+    def descr(self):
+        return self.__descr
+
+    @property
+    def prodim(self):
+        return self.__prodim
+
+    @staticmethod
+    def __check_value(value):
+        if not isinstance(value, str):
+            raise TypeError("Wrong type of value")
+        if not value:
+            raise ValueError("Wrong Value")
+        return True  
+    
+    @name.setter
+    def name(self,value):
+        if Stores.__check_value(value):
+            self.__name = value
+
+    @price_serv.setter    
+    def price_serv(self,price_serv):
+        if not isinstance(price_serv,int):
+            raise TypeError("wrong type")
+        self.__price_serv = price_serv  
+
+    @descr.setter
+    def descr(self,value):
+        if  Stores.__check_value(value):
+            self.__descr = value
+
+    @prodim.setter
+    def descr(self,value):
+        if  Stores.__check_value(value):
+            self.__prodim = value
+        
+
+    def __str__(self): 
+        return f'Name:{self.__name}, Price: {self.__price_serv}, Description: {self.__descr},Dimensions:{self.__prodim}'
 
 
 class Customer:
-    def __init__(self,Sur,Name,pat,mob):
-        if not (isinstance(Name,str) and isinstance(Sur,str) and isinstance(pat,str) and isinstance(mob,str)):
+    def __init__(self,Sur,Name,patronymic,mobile):
+        if not (isinstance(Name,str) and isinstance(Sur,str) and isinstance(patronymic,str) and isinstance(mobile,str)):
             raise ValueError("Wrong value")
-        if not (Name.isalpha() and Sur.isalpha() and pat.isalpha() and mob):
+        if not (Name.isalpha() and Sur.isalpha() and patronymic.isalpha() and mobile):
             raise TypeError("Wrong type") 
-        self.__surname = Sur
-        self.__name = Name
-        self.__patronymic = pat
-        self.__mobile = mob 
+        self.surname = Sur
+        self.name = Name
+        self.patronymic = patronymic
+        self.mobile = mobile 
+
+    @property
+    def surname(self):
+        return self.__surname
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def patronymic(self):
+        return self.__patronymic
+
+    @property
+    def mobile(self):
+        return self.__mobile
+
+    @staticmethod
+    def __check_set_value(value):
+        if not isinstance(value, str):
+            raise TypeError("Wrong type of value")
+        if not value:
+            raise ValueError("Wrong Value")
+        return True
+    
+    @name.setter
+    def name(self,value):
+        if Customer.__check_set_value(value):
+            self.__name = value
+
+    @surname.setter
+    def surname(self,value):
+        if Customer.__check_set_value(value):
+            self.__surname = value
+
+    @mobile.setter
+    def mobile(self,value):
+        flag = phonenumbers.parse(value)
+        if not phonenumbers.is_possible_number(flag):
+            raise ValueError("Wrong Value")
+        self.__mobile = value 
+
+    @patronymic.setter
+    def patronymic(self,value):
+        if Customer.__check_set_value(value):
+            self.__patronymic = value
 
     def __str__(self):
-            return f'Name: {self.__name}\nSur: {self.__surname}\nPat: {self.__patronymic}\nMobile: {self.__mobile}'
+            return f'Name: {self.name}\nSur: {self.surname}\nPat: {self.patronymic}\nMobile: {self.mobile}'
 
 
 class Order:
