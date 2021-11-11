@@ -120,7 +120,7 @@ class Customer:
             self.__patronymic = value
 
     def __str__(self):
-            return f'Name: {self.name}\nSur: {self.surname}\nPat: {self.patronymic}\nMobile: {self.mobile}'
+        return f'Name: {self.name}\nSur: {self.surname}\nPat: {self.patronymic}\nMobile: {self.mobile}'
 
 
 class Order:

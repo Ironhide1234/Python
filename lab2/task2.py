@@ -13,7 +13,6 @@ class Text:
         self.filename = filename
             
     def count_symbols(self):
-        count = 0
         f = open(self.filename)  
         symb = len(f.read())
         f.close()

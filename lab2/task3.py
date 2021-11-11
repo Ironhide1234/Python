@@ -4,9 +4,9 @@ class Student:
     
     def __init__(self,name,surname,booknumb,grade):
         if not (isinstance(name,str) and isinstance(surname,str) and isinstance(booknumb,int) and isinstance(grade,list)):
-            raise ValueError("Wrong value")  
+            raise ValueError("Wrong type")  
         if not (name.isalpha() and surname.isalpha() and booknumb > 0):
-            raise TypeError("Wrong type") 
+            raise TypeError("Wrong value") 
         self.booknumb  = booknumb
         self.surname = surname
         self.name = name
