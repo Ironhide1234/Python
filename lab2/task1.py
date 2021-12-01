@@ -3,10 +3,6 @@ import phonenumbers
 
 class Stores:
     def __init__(self,name,price_serv,descr,prodim):
-        if not (isinstance(price_serv,int) and isinstance(descr,str) and isinstance(prodim,str) and isinstance(name,str)): 
-            raise TypeError("Wrong type")
-        if not (name.isalpha() and price_serv > 0 and descr and prodim):
-             raise ValueError("Wrong value") 
         self.name = name
         self.price_serv = price_serv
         self.descr = descr
@@ -53,21 +49,16 @@ class Stores:
             self.__descr = value
 
     @prodim.setter
-    def descr(self,value):
+    def prodim(self,value):
         if  Stores.__check_value(value):
             self.__prodim = value
         
-
     def __str__(self): 
         return f'Name:{self.__name}, Price: {self.__price_serv}, Description: {self.__descr},Dimensions:{self.__prodim}'
 
 
 class Customer:
     def __init__(self,Sur,Name,patronymic,mobile):
-        if not (isinstance(Name,str) and isinstance(Sur,str) and isinstance(patronymic,str) and isinstance(mobile,str)):
-            raise ValueError("Wrong value")
-        if not (Name.isalpha() and Sur.isalpha() and patronymic.isalpha() and mobile):
-            raise TypeError("Wrong type") 
         self.surname = Sur
         self.name = Name
         self.patronymic = patronymic
@@ -129,6 +120,17 @@ class Order:
             raise TypeError("Wrong type")
         self.customer = cust
         self.prod = prod 
+
+    @property
+    def customer(self):
+        return self.__customer
+
+    @customer.setter
+    def customer(self,customer):
+        self.__customer = customer    
+
+    def __str__(self):
+        return f"Customer: {self.cust}\nProduct: {''.join(i for i in str(self.prod))}"
 
     def countval(self):
         cost = 0
