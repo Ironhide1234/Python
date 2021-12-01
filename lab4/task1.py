@@ -2,13 +2,32 @@ from math import gcd
 
 class Rational:	
     def __init__(self,numerator=1,denominator=1):
-        if not isinstance(denominator,int) and isinstance(numerator,int):
+        newnumber = Rational.reducefraction(numerator,denominator)
+        self.numerator=newnumber[0]
+        self.denominator=newnumber[1]   
+
+    @property
+    def numerator(self):     
+        return self.__numerator   
+
+    @property
+    def denominator(self):     
+        return self.__denominator    
+
+    @numerator.setter
+    def numerator(self,numerator):
+        if not isinstance(numerator,int):
+            raise TypeError("Wrong type")
+        self.__numerator = numerator   
+
+    @denominator.setter
+    def denominator(self,denominator):
+        if not isinstance(denominator,int):
             raise TypeError("Wrong type")
         if not denominator:
             raise ZeroDivisionError("Zero division error")
-        newnumber = Rational.reducefraction(numerator,denominator)
-        self.__numerator=newnumber[0]
-        self.__denominator=newnumber[1]            
+        self.__denominator = denominator    
+
     @staticmethod  
     def reducefraction(x,y):
         k = gcd(x,y)
