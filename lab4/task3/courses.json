@@ -1,0 +1,5 @@
+[
+    {"name": "full stack for 15 mins", "course_program": ["Junior", "Middle", "Senior"],"teacher": "Gosha Dudar", "type": "Local course", "laboratory": "5.15room"}, 
+    {"name": "Java learning from very beginning", "course_program": ["Junior", "Middle", "Senior"],"teacher": "Gosha Dudar", "type": "Local course", "laboratory": "5.15 lab"}, 
+    {"name": "Django for beginners", "course_program": ["1", "0", "5", "8"], "teacher": "Makar Abobenko", "type": "Offsite course", "location": "Zaporozhye"}
+]
